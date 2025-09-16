@@ -46,7 +46,75 @@ The terminal states are S = 0 and S = 100.
 
 2. Define the action space $\mathcal{A}(s)$.
 
-The action space is the number of actions the agent can choose. This is a portion of his capital, so this will be $\mathcal{A}(s) = {0, 1, \cdots, 99}$, as it cannot be 100. 0 might not be included.
+The action space is the number of actions the agent can choose. This is a portion of his capital, so this will be
+$\mathcal{A}(s) = \{a\in \mathcal{S}|0\le a\le min(s, 100-s)\}$
+, as it cannot be 100. 0 might not be included.
+
+3. Let $R_a$ denote the reward given bet $a$ (a stochastic variable). Calculate the expected rewards. If the state-value for the terminal states is set to zero, what do the state-value of a policy mean?
+
+The expected reward can be calculated as:
+
+$r(s,a)=\mathbb{E}[R_a]=a\cdot p_H$
+
+$
+    r(s, a) = \mathbb{E}[R_t | S_{t-1} = s, A_{t-1} = a] = \sum_{r \in \mathcal{R}} r \sum_{s' \in \mathcal{S}} p(s', r | s, a)
+$
+
+where $p_H$ is the chance of getting heads.
+
+The state-value of a policy means that it cannot be made a bet bigger than the capital, which also means there are no options when the capital is 0.
+
+4. Let $R_a$ be zero for all bets $a$ and set the state-value for the terminal state 0 to zero and for state 100 to one. What do the state-value of a policy mean?
+
+
+## 6.6.4 Exercise - Factory storage
+
+> A factory has a storage tank with a capacity of 4 $\mathrm{m}^{3}$ for temporarily storing waste produced by the factory. Each week the factory produces $0,1$, 2 or 3 $\mathrm{m}^{3}$ waste with respective probabilities 
+$$p_{0}=\displaystyle \frac{1}{8},\ p_{1}=\displaystyle \frac{1}{2},\ p_{2}=\displaystyle \frac{1}{4} \text{ and } p_{3}=\displaystyle \frac{1}{8}.$$ 
+If the amount of waste produced in one week exceeds the remaining capacity of the tank, the excess is specially removed at a cost of \$30 per cubic metre. At the end of each week there is a regular opportunity to remove all waste from the storage tank at a fixed cost of \$25 and a variable cost of \$5 per cubic metre. 
+The problem can be modelled as a finite MDP where a state denote the amount of waste in the tank at the end of week $n$ just before the regular removal opportunity.
+
+1. Define the state space $\mathcal{S}$.
+
+The state space is: 
+
+$\mathcal{S} = {0, 1, 2, 3, 4}$
+
+As these are the numbers of cubic meters there can be in the tank at the end of the week, as the excess is removed. 
+
+2. Define the action space $\mathcal{A}(s)$.
+
+the actions are: 
+
+$\mathcal{A}(s) = \{\text{remove}, \text{not remove}\}$
+
+It is possible to get the things removed or to do nothing.
+
+3. Calculate the expected rewards $r(s, a)$
+
+There are two different rewards depending if a1 or a2 is taken. 
+
+$r(s, \text{remove}) = -(25 + 5s)$
+$r(s, \text{not remove}) = -30\sum_{i>4-s}(s+i-4)\cdot p_i$
+
+
+4. Calculate the transition probabilities $p(s'|s,a)$
+
+for remove:
+
+$p(s'|s, \text{remove}) = p_s \text{ for } 0\le s < 4$
+
+The rest of the probabilities are 0. For not removing:
+
+
+
+$$p(4|s, \text{remove}) = \sum_{i\le 4-s} p_i $$
+$$p(s'|s,k)=p_{s'-s}\text{ if } s\le s' \le 3$$
+
+otherwise the probability is 0.
+
+
+
 
 
 
