@@ -66,7 +66,7 @@ $$p(s'|s,a)=p(x'|x,a)\cdot p(y'|y,a)=p(x'|\bar x)\cdot p(y'|\bar y)$$
 
 using the fucntions below, they can be rewritteh with the bars.
 
-$$p(x'|x,a)=pr(x'=\min(20, \bar x - \min(\bar x, D_1)+H_1))$$
+$$p(x'|x,a)=pr(x'< \min(20, \bar x - \min(\bar x, D_1)+H_1))$$
 
 $$\text{pr}(x'|\bar x)$$
 
