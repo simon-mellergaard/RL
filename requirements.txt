@@ -1,0 +1,9 @@
+pandas==2.2.3
+numpy==2.3.3
+plotnine==0.15.0
+meteostat==1.7.3
+pymdptoolbox==4.0b3
+dfply==0.3.3
+ipykernel==6.25.2
+gdown==5.2.0
+joblib==1.5.2
